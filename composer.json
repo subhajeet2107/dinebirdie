@@ -7,7 +7,7 @@
 	"require": {
 		"laravel/framework": "4.2.*",
 		"fabpot/goutte": "*",
-		
+		"thujohn/twitter": "dev-master"
 	},
 	"autoload": {
 		"classmap": [
