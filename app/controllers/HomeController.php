@@ -17,7 +17,7 @@ class HomeController extends BaseController {
 
 	public function getIndex()
 	{
-		//$var = Twitter::getSearch(['q'=>'messi','count'=>10]);
+		
 		//Dineout events URL
 		$url = "http://www.dineout.co.in/api/get_event_list/?city_id=0";
 		$data = [];
@@ -28,4 +28,12 @@ class HomeController extends BaseController {
 		return View::make('main')->with('events',$data);
 	}
 
+	public function getTweets($q)
+	{
+		if(!empty($q))
+		{
+			$tweets = Twitter::getSearch(['q'=>$q,'count'=>10]);
+			return View::make('tweets')->with('tweets',$tweets);
+		}
+	}
 }
