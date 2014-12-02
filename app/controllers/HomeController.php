@@ -17,7 +17,15 @@ class HomeController extends BaseController {
 
 	public function getIndex()
 	{
-		return View::make('main');
+		//$var = Twitter::getSearch(['q'=>'messi','count'=>10]);
+		//Dineout events URL
+		$url = "http://www.dineout.co.in/api/get_event_list/?city_id=0";
+		$data = [];
+		$client = new GuzzleHttp\Client();
+		$response = $client->get($url);
+		$data['events'] =  $response->json();
+		$data['events'] = $data['events']['output_params']['data']['event_data'];
+		return View::make('main')->with('events',$data);
 	}
 
 }
